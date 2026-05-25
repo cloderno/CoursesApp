@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -33,10 +35,17 @@ android {
 }
 
 dependencies {
+    implementation project(":data")
+    implementation project(":domain")
+    implementation project(":core")
+    implementation project(":core:ui")
     implementation project(":feature:auth")
     implementation project(":feature:account")
     implementation project(":feature:home")
     implementation project(":feature:favourites")
+
+    implementation libs.hilt.android
+    ksp libs.hilt.compiler
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat

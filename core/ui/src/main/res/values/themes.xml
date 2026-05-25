@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CoursesApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/bg_black</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="MyActiveIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/bg_light_gray</item>
+    </style>
+
+    <style name="AppText">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="AppText.Regular">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="AppText.Medium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Theme.CoursesApp" parent="Base.Theme.CoursesApp" />
+</resources>

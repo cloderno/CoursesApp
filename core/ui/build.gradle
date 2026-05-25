@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.yeldar.navigation'
+    namespace 'com.yeldar.ui'
     compileSdk {
         version = release(36)
     }
@@ -14,7 +14,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-
+    aaptOptions {
+        noCompress ""
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -28,8 +30,6 @@ android {
 }
 
 dependencies {
-    implementation libs.androidx.navigation.fragment.ktx
-    implementation libs.androidx.navigation.ui.ktx
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material

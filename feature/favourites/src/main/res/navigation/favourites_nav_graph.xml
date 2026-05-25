@@ -4,6 +4,8 @@
     android:id="@+id/favourites_nav_graph"
     app:startDestination="@id/favouritesFragment">
 
+    <deepLink app:uri="app://courses/favourites" />
+
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="com.yeldar.favourites.FavouritesFragment"/>
