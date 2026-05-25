@@ -6,4 +6,7 @@
     <color name="bg_black">#151515</color>
     <color name="white">#FFFFFF</color>
     <color name="hint">#80F2F2F3</color>
+    <color name="blue">#2683ED</color>
+    <color name="orange_light">#F98509</color>
+    <color name="orange_dark">#F95D00</color>
 </resources>

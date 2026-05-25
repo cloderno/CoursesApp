@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav.setupWithNavController(navController)
 
-        // Слушаем, какой экран сейчас открыт, чтобы скрывать/показывать нижнее меню
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 loginFragment -> bottomNav.visibility = View.GONE
