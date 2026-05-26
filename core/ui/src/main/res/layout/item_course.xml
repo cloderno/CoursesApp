@@ -62,7 +62,7 @@
         android:layout_height="28dp"
         android:layout_margin="8dp"
         android:padding="6dp"
-        android:src="@drawable/favourites"
+        android:src="@drawable/selector_bookmark"
         android:background="@drawable/bg_blurry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

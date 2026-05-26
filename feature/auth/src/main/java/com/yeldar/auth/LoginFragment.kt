@@ -21,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import androidx.core.net.toUri
+import com.yeldar.common.utils.blockSpaces
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -40,6 +41,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun setupFilters() {
         binding.emailEditText.blockCyrillicInput()
+
+        binding.emailEditText.blockSpaces()
+        binding.emailEditText.blockSpaces()
     }
 
     private fun setupListeners() {

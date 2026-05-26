@@ -16,3 +16,13 @@ fun EditText.blockCyrillicInput() {
 
     this.filters = this.filters.plus(noCyrillicFilter)
 }
+
+fun EditText.blockSpaces() {
+    val filter = InputFilter { source, _, _, _, _, _ ->
+        if (source.contains(" ")) {
+            return@InputFilter source.toString().replace(" ", "")
+        }
+        null
+    }
+    this.filters = this.filters.plus(filter)
+}

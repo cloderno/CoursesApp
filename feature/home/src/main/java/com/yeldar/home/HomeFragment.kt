@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -28,8 +29,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val adapter = AsyncListDifferDelegationAdapter<CourseUi>(
         CourseDiffUtil(),
-        courseAdapterDelegate()
+        courseAdapterDelegate(
+            onDetailsClick = { course ->
+                detailsClick(course)
+            },
+            onFavouriteClick = {
+
+            }
+        )
     )
+
+    fun detailsClick(course: CourseUi) {
+        Toast.makeText(context, course.rating, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,16 +54,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 viewModel.state.collect { state ->
                     when(state) {
                         is UiState.Loading -> {
-                            android.util.Log.d("HomeFragment", "Загрузка...")
+                            binding.progressBar.visibility = View.VISIBLE
+                            binding.recyclerView.visibility = View.GONE
                         }
                         is UiState.Success -> {
-                            android.util.Log.d("HomeFragment", "Данные получены: ${state.data.size} курсов")
+                            binding.progressBar.visibility = View.GONE
+                            binding.recyclerView.visibility = View.VISIBLE
                             binding.recyclerView.adapter = adapter
                             adapter.items = state.data
-                            android.util.Log.d("HomeFragment", "Адаптеру передано элементов: ${adapter.itemCount}")
                         }
                         is UiState.Error -> {
-                            android.util.Log.e("HomeFragment", "Ошибка: ${state.message}")
+                            binding.progressBar.visibility = View.GONE
+                            binding.errorTextView.text = "Error"
+                            binding.errorTextView.visibility = View.VISIBLE
                         }
                     }
                 }
