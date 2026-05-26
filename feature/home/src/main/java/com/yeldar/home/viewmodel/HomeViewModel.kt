@@ -1,11 +1,12 @@
-package com.yeldar.home
+package com.yeldar.home.viewmodel
 
-import androidx.annotation.IntDef
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yeldar.domain.model.Course
 import com.yeldar.domain.usecase.course.GetCoursesUseCase
-import com.yeldar.ui.UiState
+import com.yeldar.home.mapper.toUi
+import com.yeldar.ui.model.CourseUi
+import com.yeldar.ui.model.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,11 +18,11 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getCoursesUseCase: GetCoursesUseCase
 ): ViewModel() {
-    private val _state = MutableStateFlow<UiState<List<Course>>>(UiState.Loading)
+    private val _state = MutableStateFlow<UiState<List<CourseUi>>>(UiState.Loading)
     val state = _state.asStateFlow()
 
     init {
-        android.util.Log.d("HomeViewModel", "ViewModel создана!")
+        Log.d("HomeViewModel", "ViewModel создана!")
         loadData()
     }
 
@@ -29,9 +30,9 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _state.value = UiState.Loading
             try {
-                delay(3000)
+                delay(1000) // fake delay to chekc loader
                 val courses = getCoursesUseCase()
-                _state.value = UiState.Success(courses)
+                _state.value = UiState.Success(courses.map { it.toUi() })
             } catch (e: Exception) {
                 _state.value = UiState.Error("Ошибка: ${e.message}")
             }

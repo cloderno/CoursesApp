@@ -1,6 +1,6 @@
-package com.yeldar.domain.model
+package com.yeldar.ui.model
 
-data class Course(
+data class CourseUi(
     val id: Int,
     val title: String,
     val description: String,

@@ -1,6 +1,7 @@
 [versions]
 adapterdelegates4KotlinDslViewbinding = "4.3.2"
 agp = "9.0.1"
+coil = "2.7.0"
 coreKtx = "1.18.0"
 hiltAndroid = "2.59.2"
 javaxInject = "1"
@@ -24,6 +25,7 @@ adapterdelegates4-kotlin-dsl-viewbinding = { module = "com.hannesdorfmann:adapte
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -47,5 +49,3 @@ jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrai
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
-
-

@@ -8,8 +8,8 @@ fun CourseDto.toDomain(): Course {
         id = this.id,
         title = this.title,
         description = this.text,
-        price = "${this.price} ₽",
-        rating = this.rate.toString(),
+        price = this.price,
+        rating = this.rate,
         startDate = this.startDate,
         isFavorite = this.hasLike
     )

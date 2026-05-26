@@ -6,6 +6,7 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -34,7 +35,16 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        settingStatusBar()
         initNavigation()
+    }
+
+    private fun settingStatusBar() {
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+
+        window.statusBarColor = getColor(com.yeldar.ui.R.color.bg_black)
+
+        windowInsetsController.isAppearanceLightStatusBars = false
     }
 
     private fun initNavigation() {

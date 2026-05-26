@@ -34,9 +34,10 @@ android {
 dependencies {
     implementation(project(":domain"))
     implementation(project(":core:ui"))
+    implementation(project(":core:common"))
     implementation(project(":data"))
 
-    implementation(libs.adapterdelegates4.kotlin.dsl.viewbinding)
+    implementation libs.adapterdelegates4.kotlin.dsl.viewbinding
 
     implementation libs.hilt.android
     ksp libs.hilt.compiler

@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="16dp"
     android:background="@drawable/bg_course_card"
-    android:paddingBottom="16dp">
+    android:paddingBottom="16dp"
+    tools:context=".ItemCourse">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/courseImageView"
@@ -100,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="10dp"
-        android:text="999 ₽"
+        android:text="999"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

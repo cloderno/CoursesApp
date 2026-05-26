@@ -1,4 +1,4 @@
-package com.yeldar.ui
+package com.yeldar.ui.model
 
 sealed class UiState<out T>{
     object Loading : UiState<Nothing>()
