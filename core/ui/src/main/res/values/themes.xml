@@ -5,6 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">@color/bg_black</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="MyActiveIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">

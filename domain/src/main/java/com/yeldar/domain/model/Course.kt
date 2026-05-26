@@ -1,10 +1,11 @@
 package com.yeldar.domain.model
 
 data class Course(
-    val id: Int,
+    val id: String,
     val title: String,
-    val text: String,
+    val description: String,
     val price: String,
-    val rate: Double,
+    val rating: String,
+    val startDate: String,
     val isFavorite: Boolean
 )
