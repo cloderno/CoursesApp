@@ -35,6 +35,7 @@ class HomeViewModel @Inject constructor(
                 _state.value = UiState.Success(courses.map { it.toUi() })
             } catch (e: Exception) {
                 _state.value = UiState.Error("Ошибка: ${e.message}")
+                Log.e("HomeViewModel", "loadData error: ${e.message}")
             }
         }
     }

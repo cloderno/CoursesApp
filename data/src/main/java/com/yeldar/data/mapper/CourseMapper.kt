@@ -4,6 +4,8 @@ import com.yeldar.data.dto.CourseDto
 import com.yeldar.data.entity.FavouriteEntity
 import com.yeldar.domain.model.Course
 import java.time.Instant
+import com.yeldar.common.utils.toEpochMilli
+import java.time.LocalDate
 
 fun Course.toEntity(): FavouriteEntity {
     return FavouriteEntity(
@@ -25,21 +27,24 @@ fun CourseDto.toDomain(): Course {
         description = this.text,
         price = this.price,
         rating = this.rate,
-        startDate = Instant.parse(this.startDate),
+        startDate = LocalDate.parse(this.startDate),
         isFavorite = this.hasLike,
-        publishDate = Instant.parse(this.publishDate)
+        publishDate = LocalDate.parse(this.publishDate)
     )
 }
 
 fun CourseDto.toFavouriteEntity(): FavouriteEntity {
+    val startLocalDate = LocalDate.parse(this.startDate)
+    val publishLocalDate = LocalDate.parse(this.publishDate)
+
     return FavouriteEntity(
         id = this.id,
         title = this.title,
         description = this.text,
         price = this.price,
         rating = this.rate,
-        startDate = Instant.parse(this.startDate).toEpochMilli(),
+        startDate = startLocalDate.toEpochMilli(),
         isFavorite = this.hasLike,
-        publishDate = Instant.parse(this.publishDate).toEpochMilli(),
+        publishDate = publishLocalDate.toEpochMilli()
     )
 }

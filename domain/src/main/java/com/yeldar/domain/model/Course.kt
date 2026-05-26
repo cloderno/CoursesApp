@@ -1,6 +1,6 @@
 package com.yeldar.domain.model
 
-import java.time.Instant
+import java.time.LocalDate
 
 data class Course(
     val id: Int,
@@ -8,7 +8,7 @@ data class Course(
     val description: String,
     val price: String,
     val rating: String,
-    val startDate: Instant,
+    val startDate: LocalDate,
     val isFavorite: Boolean,
-    val publishDate: Instant
+    val publishDate: LocalDate
 )
