@@ -16,7 +16,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,6 +35,8 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":core:ui"))
     implementation(project(":data"))
+
+    implementation(libs.adapterdelegates4.kotlin.dsl.viewbinding)
 
     implementation libs.hilt.android
     ksp libs.hilt.compiler
