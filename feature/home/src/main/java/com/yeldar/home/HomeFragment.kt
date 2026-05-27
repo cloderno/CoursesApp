@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
+import com.yeldar.domain.model.Course
 import com.yeldar.home.databinding.FragmentHomeBinding
 import com.yeldar.home.viewmodel.HomeViewModel
 import com.yeldar.ui.adapter.CourseDiffUtil
@@ -33,8 +34,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             onDetailsClick = { course ->
                 detailsClick(course)
             },
-            onFavouriteClick = {
-
+            onFavouriteClick = { course ->
+                favouriteClick(course)
             }
         )
     )
@@ -43,11 +44,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         Toast.makeText(context, course.rating, Toast.LENGTH_SHORT).show()
     }
 
+    fun favouriteClick(course: CourseUi) {
+        viewModel.onFavoriteClick(course)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
 
-        viewModel.loadData()
+        binding.recyclerView.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -56,16 +61,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         is UiState.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
                             binding.recyclerView.visibility = View.GONE
+                            binding.errorTextView.visibility = View.GONE
                         }
                         is UiState.Success -> {
                             binding.progressBar.visibility = View.GONE
                             binding.recyclerView.visibility = View.VISIBLE
-                            binding.recyclerView.adapter = adapter
+                            binding.errorTextView.visibility = View.GONE
+
                             adapter.items = state.data
                         }
                         is UiState.Error -> {
                             binding.progressBar.visibility = View.GONE
-                            binding.errorTextView.text = "Error"
+                            binding.recyclerView.visibility = View.GONE
+                            binding.errorTextView.text = state.message
                             binding.errorTextView.visibility = View.VISIBLE
                         }
                     }

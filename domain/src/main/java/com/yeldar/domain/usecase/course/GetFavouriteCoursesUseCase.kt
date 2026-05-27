@@ -5,10 +5,10 @@ import com.yeldar.domain.repository.CourseRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetCoursesUseCase @Inject constructor(
+class GetFavouriteCoursesUseCase @Inject constructor(
     private val repository: CourseRepository
 ) {
      operator fun invoke(): Flow<List<Course>> {
-        return repository.getCourses()
-    }
+        return repository.getFavouriteCourses()
+     }
 }

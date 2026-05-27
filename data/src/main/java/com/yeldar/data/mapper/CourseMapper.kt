@@ -1,22 +1,25 @@
 package com.yeldar.data.mapper
 
 import com.yeldar.data.dto.CourseDto
-import com.yeldar.data.entity.FavouriteEntity
+import com.yeldar.data.entity.CourseEntity
 import com.yeldar.domain.model.Course
-import java.time.Instant
 import com.yeldar.common.utils.toEpochMilli
+import java.time.Instant
 import java.time.LocalDate
 
-fun Course.toEntity(): FavouriteEntity {
-    return FavouriteEntity(
+fun CourseEntity.toDomain(): Course {
+    val startLocalDate = Instant.ofEpochMilli(this.startDate).atZone(java.time.ZoneId.systemDefault()).toLocalDate()
+    val publishLocalDate = Instant.ofEpochMilli(this.publishDate).atZone(java.time.ZoneId.systemDefault()).toLocalDate()
+
+    return Course(
         id = this.id,
         title = this.title,
         description = this.description,
         price = this.price,
         rating = this.rating,
-        startDate = this.startDate.toEpochMilli(),
-        isFavorite = this.isFavorite,
-        publishDate = this.publishDate.toEpochMilli()
+        startDate = startLocalDate,
+        isFavourite = this.isFavourite,
+        publishDate = publishLocalDate
     )
 }
 
@@ -28,23 +31,24 @@ fun CourseDto.toDomain(): Course {
         price = this.price,
         rating = this.rate,
         startDate = LocalDate.parse(this.startDate),
-        isFavorite = this.hasLike,
+        isFavourite = this.hasLike,
         publishDate = LocalDate.parse(this.publishDate)
     )
 }
 
-fun CourseDto.toFavouriteEntity(): FavouriteEntity {
+fun CourseDto.toEntity(localCourse: CourseEntity?): CourseEntity {
     val startLocalDate = LocalDate.parse(this.startDate)
     val publishLocalDate = LocalDate.parse(this.publishDate)
+    val finalFavourite = localCourse?.isFavourite ?: this.hasLike
 
-    return FavouriteEntity(
+    return CourseEntity(
         id = this.id,
         title = this.title,
         description = this.text,
         price = this.price,
         rating = this.rate,
         startDate = startLocalDate.toEpochMilli(),
-        isFavorite = this.hasLike,
+        isFavourite = finalFavourite,
         publishDate = publishLocalDate.toEpochMilli()
     )
 }

@@ -9,6 +9,6 @@ data class Course(
     val price: String,
     val rating: String,
     val startDate: LocalDate,
-    val isFavorite: Boolean,
+    val isFavourite: Boolean,
     val publishDate: LocalDate
 )

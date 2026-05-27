@@ -2,13 +2,13 @@ package com.yeldar.domain.usecase.course
 
 import com.yeldar.domain.model.Course
 import com.yeldar.domain.repository.CourseRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetCoursesUseCase @Inject constructor(
+class ToggleFavouriteCourseUseCase @Inject constructor(
     private val repository: CourseRepository
 ) {
-     operator fun invoke(): Flow<List<Course>> {
-        return repository.getCourses()
+    suspend operator fun invoke(courseId: Int, courseIsFavourite: Boolean) {
+        repository.toggleFavorite(courseId, courseIsFavourite)
     }
 }
+

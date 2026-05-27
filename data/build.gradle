@@ -33,7 +33,6 @@ dependencies {
     implementation project(":domain")
     implementation project(":core:common")
 
-    implementation libs.retrofit
     implementation libs.okhttp
     implementation libs.retrofit
     implementation libs.logging.interceptor

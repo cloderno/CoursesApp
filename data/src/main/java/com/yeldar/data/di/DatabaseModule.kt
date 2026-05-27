@@ -2,7 +2,7 @@ package com.yeldar.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.yeldar.data.dao.FavouriteDao
+import com.yeldar.data.dao.CourseDao
 import com.yeldar.data.database.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -25,7 +25,7 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideFavouriteDao(database: AppDatabase): FavouriteDao {
-        return database.provideFavouriteDao()
+    fun provideCourseDao(database: AppDatabase): CourseDao {
+        return database.provideCourseDao()
     }
 }

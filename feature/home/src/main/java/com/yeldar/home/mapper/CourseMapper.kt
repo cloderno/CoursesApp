@@ -12,7 +12,7 @@ fun Course.toUi(): CourseUi {
         price = "$price ₽",
         rating = rating,
         startDate = DateUtils.format(date = startDate.toString()),
-        isFavorite = isFavorite,
+        isFavorite = isFavourite,
         publishDate = publishDate
     )
 }
