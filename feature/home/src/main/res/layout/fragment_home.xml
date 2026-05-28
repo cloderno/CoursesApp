@@ -6,8 +6,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_black"
-    android:padding="16dp"
+    android:layout_marginHorizontal="16dp"
     tools:context=".HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_search_bar"
+            android:drawableStart="@drawable/search_icon"
+            android:drawablePadding="12dp"
+            android:hint="Search courses..."
+            android:textSize="14sp"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/filterButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/filterButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_search_bar"
+            android:padding="16dp"
+            android:src="@drawable/filter_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/dateFilter"
@@ -16,7 +57,7 @@
 
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="16dp"
-        android:textSize="14dp"
+        android:textSize="14sp"
 
         android:text="@string/date_added"
         android:textColor="@color/green"
@@ -26,7 +67,7 @@
         android:drawableTint="@color/green"
         android:includeFontPadding="false"
 
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchContainer"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ProgressBar
@@ -43,11 +84,15 @@
 
      <TextView
          android:id="@+id/errorTextView"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
          android:text="@string/error"
+         android:gravity="start"
          android:textColor="@color/red"
-         android:visibility="gone"/>
+         android:visibility="gone"
+         app:layout_constraintTop_toBottomOf="@id/dateFilter"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
