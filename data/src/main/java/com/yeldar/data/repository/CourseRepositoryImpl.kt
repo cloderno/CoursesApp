@@ -23,6 +23,18 @@ class CourseRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getCoursesSortedByDateAsc(): Flow<List<Course>> {
+        return dao.getCoursesAsc().map { entities ->
+            entities.map { it.toDomain() }
+        }
+    }
+
+    override fun getCoursesSortedByDateDesc(): Flow<List<Course>> {
+        return dao.getCoursesDesc().map { entities ->
+            entities.map { it.toDomain() }
+        }
+    }
+
     override fun getFavouriteCourses(): Flow<List<Course>> {
         return dao.getFavouriteCourses().map { entities ->
             entities.map { it.toDomain() }

@@ -15,6 +15,7 @@
         android:text="@string/enter"
         android:textColor="@color/white"
         android:textSize="28sp"
+        android:layout_marginTop="76dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,51 +135,61 @@
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:background="#2C2C32"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/forgotPasswordTextView" />
+        app:layout_constraintTop_toBottomOf="@id/forgotPasswordTextView"
+        app:layout_constraintBottom_toTopOf="@id/vkButton"/>
 
-    <!--SOCIALS-->
-    <com.google.android.material.button.MaterialButton
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vkButton"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-
-        app:backgroundTint="@color/blue"
-        app:cornerRadius="30dp"
-
-        app:icon="@drawable/vk"
-
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="@null"
-
-        android:gravity="center"
+        android:background="@drawable/blue_button"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/okButton"
-        app:layout_constraintTop_toBottomOf="@id/divider"/>
+        app:layout_constraintTop_toBottomOf="@id/divider">
 
-    <androidx.appcompat.widget.AppCompatButton
+        <ImageView
+            android:id="@+id/vkIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/vk"
+            android:contentDescription="@null"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/okButton"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/orange_gradient_button"
-        android:text="ОК"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/vkButton"
-        app:layout_constraintTop_toTopOf="@id/vkButton" />
+        app:layout_constraintTop_toTopOf="@id/vkButton">
+
+        <ImageView
+            android:id="@+id/okIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ok"
+            android:contentDescription="@null"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

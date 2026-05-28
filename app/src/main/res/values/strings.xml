@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">CoursesApp</string>
-    <string name="account">Аккаунт</string>
-    <string name="favourites">Избранное</string>
-    <string name="main">Главная</string>
 </resources>

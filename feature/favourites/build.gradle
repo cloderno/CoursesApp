@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -14,7 +16,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -28,6 +32,18 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:common"))
+
+    implementation libs.adapterdelegates4.kotlin.dsl.viewbinding
+
+    implementation libs.hilt.android
+    ksp libs.hilt.compiler
+
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material

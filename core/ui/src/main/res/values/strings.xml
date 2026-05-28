@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="about">Подробнее</string>
+    <string name="account">Аккаунт</string>
+    <string name="favourites">Избранное</string>
+    <string name="main">Главная</string>
+    <string name="email">Email</string>
+    <string name="example_email">example@gmail.com</string>
+    <string name="enter">Вход</string>
+    <string name="password">Пароль</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="register">Регистрация</string>
+    <string name="no_account_question">Нет аккаунта?</string>
+    <string name="forgot_password">Забыл пароль</string>
 </resources>

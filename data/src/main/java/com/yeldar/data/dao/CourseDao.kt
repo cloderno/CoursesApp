@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.yeldar.data.entity.CourseEntity
+import com.yeldar.domain.model.Course
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -26,4 +27,10 @@ interface CourseDao {
 
     @Query("UPDATE courses SET isFavourite = NOT isFavourite WHERE id == :id")
     suspend fun toggleFavourite(id: Int)
+
+    @Query("SELECT * FROM courses ORDER BY publishDate ASC")
+    fun getCoursesAsc(): Flow<List<CourseEntity>>
+
+    @Query("SELECT * FROM courses ORDER BY publishDate DESC")
+    fun getCoursesDesc(): Flow<List<CourseEntity>>
 }

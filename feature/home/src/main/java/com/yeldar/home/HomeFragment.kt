@@ -10,7 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
+import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.yeldar.domain.model.Course
 import com.yeldar.home.databinding.FragmentHomeBinding
 import com.yeldar.home.viewmodel.HomeViewModel
@@ -28,8 +31,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter = AsyncListDifferDelegationAdapter<CourseUi>(
-        CourseDiffUtil(),
+    private val adapter = ListDelegationAdapter(
         courseAdapterDelegate(
             onDetailsClick = { course ->
                 detailsClick(course)
@@ -48,11 +50,24 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewModel.onFavoriteClick(course)
     }
 
+    fun filterClick() {
+        viewModel.toggleSort()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
 
+        val layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.layoutManager = layoutManager
+        layoutManager.reverseLayout = false
+        layoutManager.stackFromEnd = false
+
         binding.recyclerView.adapter = adapter
+
+        binding.dateFilter.setOnClickListener {
+            this.filterClick()
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -69,6 +84,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                             binding.errorTextView.visibility = View.GONE
 
                             adapter.items = state.data
+                            adapter.notifyDataSetChanged()
+                            binding.recyclerView.scrollToPosition(0)
                         }
                         is UiState.Error -> {
                             binding.progressBar.visibility = View.GONE
