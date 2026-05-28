@@ -1,6 +1,7 @@
 package com.yeldar.common.utils
 
 import android.text.InputFilter
+import android.util.Patterns
 import android.widget.EditText
 
 fun EditText.blockCyrillicInput() {
@@ -25,4 +26,8 @@ fun EditText.blockSpaces() {
         null
     }
     this.filters = this.filters.plus(filter)
+}
+
+fun isValidEmail(email: String): Boolean {
+    return Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }

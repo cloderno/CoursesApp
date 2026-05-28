@@ -2,6 +2,7 @@ package com.yeldar.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yeldar.common.utils.isValidEmail
 import com.yeldar.domain.usecase.auth.SaveAuthSessionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,10 +19,8 @@ class LoginViewModel @Inject constructor(
     val emailFlow = MutableStateFlow("")
     val passwordFlow = MutableStateFlow("")
 
-    private val emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$".toRegex()
-
     val isLoginButtonEnabled: StateFlow<Boolean> = combine(emailFlow, passwordFlow) { email, password ->
-        val isValidEmail = email.matches(emailPattern)
+        val isValidEmail = isValidEmail(email)
         val isFieldsNotEmpty = email.isNotBlank() && password.isNotBlank()
 
         isValidEmail && isFieldsNotEmpty
