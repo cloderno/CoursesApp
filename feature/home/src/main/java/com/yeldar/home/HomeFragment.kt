@@ -85,7 +85,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
                             adapter.items = state.data
                             adapter.notifyDataSetChanged()
-                            binding.recyclerView.scrollToPosition(0)
                         }
                         is UiState.Error -> {
                             binding.progressBar.visibility = View.GONE
